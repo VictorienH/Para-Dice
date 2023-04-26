@@ -1,15 +1,12 @@
 import 'dart:math';
 
 class MonJeuDeDes {
-  int nombreFace;
   int resultatFace = 0;
-
-  MonJeuDeDes({required this.nombreFace});
 
   List<int> resultatDes = [];
   Map<int, int> compteurValeurs = {};
 
-  List<int> lancerDes(int nombreLance) {
+  List<int> lancerDes(int nombreLance, nombreFace) {
     Random random = Random();
 
     for (int i = 0; i < nombreLance; i++) {
@@ -40,10 +37,6 @@ class MonJeuDeDes {
 
   int getResultDes() {
     return resultatFace;
-  }
-
-  int getNbFace() {
-    return nombreFace;
   }
 
   double calculerMoyenne(Map<int, int> des) {
