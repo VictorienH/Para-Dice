@@ -2,7 +2,10 @@ import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 
-import 'home_page.dart';
+import 'Pages/home_page.dart';
+import 'Pages/perso.dart';
+import 'Pages/personnaliser.dart';
+import 'Pages/accueil.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,7 +21,13 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.green,
       ),
-      home: const HomePage(title: 'Flutter Para\'Dice'),
+      home: AccueilPage(),
+      routes: <String, WidgetBuilder>{
+        '/Accueil': (BuildContext context) => AccueilPage(),
+        '/Statistique': (BuildContext context) => HomePage(),
+        '/Perso': (BuildContext context) => CustomDicePage(),
+        '/Personnaliser': (BuildContext context) => PersonnaliserPage(),
+      },
       debugShowCheckedModeBanner: false,
     );
   }

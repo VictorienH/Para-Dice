@@ -3,11 +3,10 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:paradice/monJeuDeDes.dart';
 
+import 'perso.dart';
+
 class HomePage extends StatefulWidget {
-  final String title;
-
-  const HomePage({super.key, required this.title});
-
+  const HomePage({super.key});
   @override
   State<HomePage> createState() => _HomePageState();
 }
@@ -102,6 +101,7 @@ class _HomePageState extends State<HomePage> {
   lancer() {
     setState(() {
       compteurValeurs.clear();
+      jeuDeDes.clearResultat();
 
       jeuDeDes.lancerDes(nombreLance, nombreFace);
       jeuDeDes.genereValeur();
@@ -116,34 +116,9 @@ class _HomePageState extends State<HomePage> {
 
     return Scaffold(
       appBar: PreferredSize(
-          preferredSize: Size.fromHeight(150),
+          preferredSize: const Size.fromHeight(150),
           child: AppBar(
               flexibleSpace: Image.asset('assets/images/paradice_logo.png'))),
-      drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: [
-            const DrawerHeader(
-              decoration: BoxDecoration(
-                color: Colors.green,
-              ),
-              child: Text('Menu'),
-            ),
-            ListTile(
-              title: const Text('Accès aux statistiques'),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              title: const Text('Accès aux dés personnalisés'),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-          ],
-        ),
-      ),
       body: Column(
         children: [
           const SizedBox(
@@ -328,6 +303,7 @@ class _HomePageState extends State<HomePage> {
           Container(
             margin: const EdgeInsets.only(left: 16, bottom: 16),
             child: FloatingActionButton(
+              heroTag: 'Lancer',
               onPressed: lancer,
               tooltip: 'Lancer',
               child: const Icon(Icons.casino),
@@ -337,6 +313,7 @@ class _HomePageState extends State<HomePage> {
           Container(
             margin: const EdgeInsets.only(left: 16, bottom: 16),
             child: FloatingActionButton(
+              heroTag: 'Clear',
               onPressed: clearResultats,
               tooltip: 'Clear',
               child: const Icon(Icons.refresh),
